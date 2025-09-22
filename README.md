@@ -1,5 +1,12 @@
 # WaybackFinder (WBF)
 
+<div align="center">
+  <img src="src/wbf_logo.png" alt="JSHound Logo" width="150" height="200"/>
+  <p>WaybackFinder – Gather domains, URLs, and parameters from archive.org snapshots.</p>
+</div>
+
+---
+
 <img src="./src/wbf_example.png" width="550" height="370">
 
 **WaybackFinder** is a Python tool for extracting **domains**, **URLs**, and **parameters** from the [Wayback Machine](https://archive.org/).  
