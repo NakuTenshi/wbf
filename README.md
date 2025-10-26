@@ -46,6 +46,7 @@ python wbf.py -d example.com --from-year 2020 --to-year 2023
 | `-d`           | Target domain (example: site.tld) | Yes      |
 | `--from-year`  | Start year for the archive search | No       |
 | `--to-year`    | End year for the archive search   | No       |
+| `--no-timeline`| Ignores the timeline's fillter    | No       |
 
 
 ---

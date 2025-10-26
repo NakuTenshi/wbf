@@ -12,9 +12,9 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument('-d', help="Target domain (example: site.tld)", required=True, type=str)
-parser.add_argument("--from-year", type=int)
-parser.add_argument("--to-year", type=int)
-parser.add_argument("--no-timeline" , action="store_true")
+parser.add_argument("--from-year", type=int ,help="Start year for the archive search")
+parser.add_argument("--to-year", type=int, help="End year for the archive search")
+parser.add_argument("--no-timeline" , action="store_true", help="Ignores the timeline's fillter")
 
 
 
