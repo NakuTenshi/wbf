@@ -14,8 +14,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('-d', help="Target domain (example: site.tld)", required=True, type=str)
 parser.add_argument("--from-year", type=int)
 parser.add_argument("--to-year", type=int)
-
-
+parser.add_argument("--no-timeline" , action="store_true")
 
 
 
@@ -35,6 +34,8 @@ domain = args.d
 current_year = datetime.now().year
 from_year = args.from_year if args.from_year else current_year
 to_year = args.to_year if args.to_year else current_year
+params = {"url": domain, "matchType": "domain", "fl": "original", "collapse": "urlkey", "output": "json"} if args.no_timeline else { "url": domain, "matchType": "domain", "fl": "original", "collapse": "urlkey", "output": "json", "from": from_year, "to": to_year}
+
 
 founded_domains = 0
 founded_params = 0
@@ -131,7 +132,6 @@ def get_url(url, index):
 
 
 def banner():
-    os.system("clear")
     me = f"created by: " + name_bg + red + "NakuTenshi" + reset + reset
     print(f"""{red}
     █     █░ ▄▄▄▄     █████▒
@@ -151,8 +151,9 @@ def main():
 
     print(f"{red}<--------------------- {reset}{red}{bold}Status{reset}{reset}{red} --------------------->{reset}")
     print(f'Target: {gray_bg}{red}{domain}{reset}{reset}')
-    print(f"Searching from year: {gray_bg}{red}{from_year}{reset}{reset}")
-    print(f"Searching to year: {gray_bg}{red}{to_year}{reset}{reset}")
+    if not args.no_timeline:
+        print(f"Searching from year: {gray_bg}{red}{from_year}{reset}{reset}")
+        print(f"Searching to year: {gray_bg}{red}{to_year}{reset}{reset}")
 
     print(f"\n{red}<---------------------- {reset}{red}{bold}Logs{reset}{reset}{red} ---------------------->{reset}")
 
@@ -160,15 +161,7 @@ def main():
         response = requests.get(
             "https://web.archive.org/cdx/search/cdx",
             stream=True,
-            params={
-                "url": domain,
-                "matchType": "domain",
-                "fl": "original",
-                "collapse": "urlkey",
-                "output": "json",
-                "from": from_year,
-                "to": to_year,
-            },
+            params=params
         )
 
         if response.status_code == 200:
